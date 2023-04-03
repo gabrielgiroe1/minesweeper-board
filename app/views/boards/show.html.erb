@@ -1,7 +1,7 @@
 <p> <h1>Board name: <%= @board.board_name %></h1></p>
 
   <table>
-    <% @board.generate_board.each do |row| %>
+    <% JSON.parse(@board.board_data).each do |row| %>
       <tr>
         <% row.each do |cell| %>
           <td><%= cell %></td>
