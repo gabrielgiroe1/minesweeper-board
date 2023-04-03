@@ -6,7 +6,6 @@ class Board < ApplicationRecord
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :generate_board, presence: true
 
-
   def generate_board
     if num_mines > (width * height)
       return []

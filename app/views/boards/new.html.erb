@@ -1,18 +1,18 @@
 <%= form_for @board, url: boards_path do |f| %>
   <%= f.label :email %>
-  <%= f.text_field :email %>
+  <%= f.text_field :email, required: true %>
   <br><br>
   <%= f.label :board_name %>
-  <%= f.text_field :board_name %>
+  <%= f.text_field :board_name, required: true %>
   <br><br>
   <%= f.label :width %>
-  <%= f.number_field :width %>
+  <%= f.number_field :width, required: true, min: 1, max: 100 %>
   <br><br>
   <%= f.label :height %>
-  <%= f.number_field :height %>
+  <%= f.number_field :height, required: true, min: 1, max: 100%>
   <br><br>
   <%= f.label :num_mines %>
-  <%= f.number_field :num_mines %>
+  <%= f.number_field :num_mines, required: true, min: 1, max: 100 %>
   <br><br>
   <%= f.submit "Generate Board" %>
 <% end %>
