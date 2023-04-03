@@ -1,8 +1,11 @@
 class BoardsController < ApplicationController
-  def index
+  def home
     @boards = Board.order(created_at: :desc).limit(10)
   end
 
+  def index
+    @boards = Board.order(created_at: :desc)
+  end
   def show
     @board = Board.find(params[:id])
   end
