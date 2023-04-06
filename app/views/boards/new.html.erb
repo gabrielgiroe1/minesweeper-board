@@ -12,7 +12,7 @@
   <%= f.number_field :height, required: true, min: 1, max: 100%>
   <br><br>
   <%= f.label :num_mines %>
-  <%= f.number_field :num_mines, required: true, min: 1, max: 100 %>
+  <%= f.number_field :num_mines, required: true, in: 1..100%>
   <br><br>
   <%= f.submit "Generate Board" %>
 <% end %>

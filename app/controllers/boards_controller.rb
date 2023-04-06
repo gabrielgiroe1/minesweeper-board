@@ -20,12 +20,14 @@ class BoardsController < ApplicationController
       @board.board_data = @board.generate_board
       if @board.board_data.present?
         @board.save
-        redirect_to board_path(@board)
+        redirect_to board_path(@board), notice: "The board game was created"
       else
-        flash[:alert] = "The number of mines cannot be greater than the size of the board"
-
+        flash[:alert] = "There was an error creating the board"
         redirect_to new_board_path
       end
+    else
+      # flash[:notice] = "asdfsadgsgqergqeytqeryq"
+      render :new, notice: "The board is not valid."
     end
   end
 

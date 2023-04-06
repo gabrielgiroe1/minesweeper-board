@@ -1,11 +1,15 @@
 class Board < ApplicationRecord
   validates :width, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :height, presence: true, numericality: { only_integer: true, greater_than: 0 }
-  validates :num_mines, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :num_mines, presence: true, numericality: { only_integer: true, greater_than: 0,less_than_or_equal_to: :max_mines }
   validates :board_name, presence: true
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :generate_board, presence: true
 
+
+  def max_mines
+    width * height
+  end
   def generate_board
     if num_mines > (width * height)
       return []

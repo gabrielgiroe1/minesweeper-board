@@ -3,7 +3,18 @@
   <table>
     <% JSON.parse(@board.board_data).each do |row| %>
       <tr>
-        <% row.each do |cell| %>
+        <% row.each_with_index do |cell, i| %>
+          <%if i < @board.width %>
+            <%i+=1 %>
+              <%if cell == 0 %>
+              <i class="fa-duotone fa-square"></i>
+              <%else %>
+              <i class="fa-solid fa-bomb"></i>
+              <%end %>
+            <%else %>
+            <%i = 0 %>
+            <%br %>
+            <%end %>
           <td><%= cell %></td>
         <% end %>
       </tr>
