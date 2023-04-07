@@ -26,7 +26,6 @@ class BoardsController < ApplicationController
         redirect_to new_board_path
       end
     else
-      # flash[:notice] = "asdfsadgsgqergqeytqeryq"
       render :new, notice: "The board is not valid."
     end
   end

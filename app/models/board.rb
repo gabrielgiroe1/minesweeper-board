@@ -28,7 +28,6 @@ class Board < ApplicationRecord
       return []
     else
       board = Array.new(height) { Array.new(width, 0) }
-      num_of_mines = 0
       @positions.each do |i, j|
         board[i][j] = 1
       end
