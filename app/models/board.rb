@@ -27,16 +27,15 @@ class Board < ApplicationRecord
     else
       board = Array.new(height) { Array.new(width, 0) }
       num_of_mines = 0
-      (0...height).each { |i|
-        (0...width).each { |j|
+      (0...height).each do |i|
+        (0...width).each do |j|
           if num_of_mines < num_mines && @array[i * width + j] == 1
             board[i][j] = @array[i * width + j]
             num_of_mines += 1
           end
-        }
-      }
+          end
+        end
     end
-    # board = board.shuffle
     board.to_json
   end
 end
