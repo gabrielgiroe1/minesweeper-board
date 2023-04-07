@@ -45,6 +45,8 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 gem 'font-awesome-rails', '~> 4.7.0.8'
+gem 'bootstrap', '~> 5.1'
+gem 'jquery-rails', '~> 4.4'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -54,6 +56,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'rspec-rails', '~> 6.0.1'
   gem 'factory_bot_rails', '~> 6.2'
+  gem 'byebug', '~> 11.1.3'
 end
 
 group :development do
