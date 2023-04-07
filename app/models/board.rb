@@ -10,7 +10,16 @@ class Board < ApplicationRecord
   def max_mines
     width * height
   end
+
+  def random_bomb
+    @random_b=Array.new(width*height,0)
+    (0..num_mines).each do |i|
+      @random_b[i] = 1
+    end
+    @random_b.shuffle!
+  end
   def generate_board
+    random_bomb
     if num_mines > (width * height)
       return []
     else
@@ -18,8 +27,8 @@ class Board < ApplicationRecord
       num_of_mines = 0
       board.each_with_index do |row, i|
         row.each_with_index do |col, j|
-          if num_of_mines < num_mines
-            board[i][j] = 1
+          if num_of_mines < num_mines && @random_b[i * width + j] ==1
+            board[i][j] = @random_b[i * width + j]
             num_of_mines += 1
           end
         end
