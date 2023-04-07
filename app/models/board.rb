@@ -1,3 +1,4 @@
+require 'json'
 class Board < ApplicationRecord
   validates :width, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :height, presence: true, numericality: { only_integer: true, greater_than: 0 }
@@ -12,12 +13,13 @@ class Board < ApplicationRecord
   end
 
   def random_bomb
-    @random_b=Array.new(width*height,0)
+    @array=Array.new(width*height,0)
     (0..num_mines).each do |i|
-      @random_b[i] = 1
+      @array[i] = 1
     end
-    @random_b.shuffle!
+    @array.shuffle!
   end
+
   def generate_board
     random_bomb
     if num_mines > (width * height)
@@ -25,15 +27,16 @@ class Board < ApplicationRecord
     else
       board = Array.new(height) { Array.new(width, 0) }
       num_of_mines = 0
-      board.each_with_index do |row, i|
-        row.each_with_index do |col, j|
-          if num_of_mines < num_mines && @random_b[i * width + j] ==1
-            board[i][j] = @random_b[i * width + j]
+      (0...height).each { |i|
+        (0...width).each { |j|
+          if num_of_mines < num_mines && @array[i * width + j] == 1
+            board[i][j] = @array[i * width + j]
             num_of_mines += 1
           end
-        end
-      end
+        }
+      }
     end
-    board = board.shuffle
+    # board = board.shuffle
+    board.to_json
   end
 end
